@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Signoff: free, private email signature creator</title>
+<meta name="description" content="Free email signature builder. Fill in your details, add a photo, pick a style and paste it into Gmail, Outlook or Apple Mail. Your photo never leaves your browser.">
+<!-- Privacy guard: the browser refuses any request to another server (no uploads, no analytics, no fonts CDN). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Signoff home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="12" cy="16" r="9.5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="16" r="5.5" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/><path d="M19 11.5c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0M19 16c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0M19 20.5c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0" stroke="var(--stamp)" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Signoff
+    </a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#styles">Styles</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn small primary" href="#builder">Make my signature</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Free email signature builder</div>
+        <h1>The last line of every email, <em>done properly.</em></h1>
+        <p class="lede">Fill in the blanks, drop in a photo, pick a style. Paste the result into Gmail, Outlook or Apple Mail in about a minute. Your photo is edited right here and never leaves this tab.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#builder">Start with your details</a>
+          <a class="btn ghost" href="#styles">See all six styles</a>
+        </div>
+        <div class="facts mono"><span>No sign-up</span><span>No uploads</span><span>Nothing saved</span></div>
+      </div>
+      <div class="stack" id="hero-stack" aria-label="Example signatures">
+        <div class="card sigbox"></div><div class="card sigbox"></div><div class="card sigbox"></div>
+        <span class="tag mono">Examples with made-up people</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="builder" aria-labelledby="b-title">
+    <div class="wrap">
+      <div class="sechead">
+        <div class="eyebrow">Builder</div>
+        <h2 id="b-title">Fill it in. Watch it build.</h2>
+      </div>
+      <div class="bar">
+        <div class="samplebar" id="samplebar"><span><b>Sample details loaded.</b> Type over them, or start from a blank card.</span><button type="button" class="btn quiet" id="start-blank">Start blank</button></div>
+        <button type="button" class="btn small ghost" id="erase-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+          Erase everything
+        </button>
+      </div>
+
+      <div class="bench">
+        <div class="steps">
+          <div class="tabs" role="tablist" aria-label="Builder steps">
+            <button type="button" class="tab" role="tab" id="tab-1" aria-controls="pane-1" aria-selected="true"><span class="n">STEP 1</span><span class="t">Your details</span></button>
+            <button type="button" class="tab" role="tab" id="tab-2" aria-controls="pane-2" aria-selected="false"><span class="n">STEP 2</span><span class="t">Photo &amp; logo</span></button>
+            <button type="button" class="tab" role="tab" id="tab-3" aria-controls="pane-3" aria-selected="false"><span class="n">STEP 3</span><span class="t">Style</span></button>
+          </div>
+
+          <form id="form" autocomplete="off" novalidate>
+            <div class="pane" role="tabpanel" id="pane-1" aria-labelledby="tab-1">
+              <div class="group">
+                <span class="mono">Who you are</span>
+                <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" data-k="name" placeholder="Your full name"></div>
+                <div class="row2">
+                  <div class="field"><label for="f-title">Job title</label><input type="text" id="f-title" data-k="title" placeholder="Creative Manager"></div>
+                  <div class="field"><label for="f-company">Company</label><input type="text" id="f-company" data-k="company" placeholder="Company name"></div>
+                </div>
+              </div>
+              <div class="group">
+                <span class="mono">How to reach you</span>
+                <div class="row2">
+                  <div class="field"><label for="f-phone">Phone</label><input type="tel" id="f-phone" data-k="phone" placeholder="Office number"></div>
+                  <div class="field"><label for="f-mobile">Mobile</label><input type="tel" id="f-mobile" data-k="mobile" placeholder="Optional"></div>
+                </div>
+                <div class="row2">
+                  <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" data-k="email" placeholder="you@company.com"></div>
+                  <div class="field"><label for="f-website">Website</label><input type="url" id="f-website" data-k="website" placeholder="company.com"></div>
+                </div>
+                <div class="field"><label for="f-address">Address</label><input type="text" id="f-address" data-k="address" placeholder="Optional"></div>
+              </div>
+              <div class="group">
+                <span class="mono">Social profiles</span>
+                <div class="row2">
+                  <div class="field"><label for="f-linkedin">LinkedIn</label><input type="url" id="f-linkedin" data-k="linkedin" placeholder="linkedin.com/in/you"></div>
+                  <div class="field"><label for="f-x">X</label><input type="url" id="f-x" data-k="x" placeholder="x.com/you"></div>
+                </div>
+                <div class="row2">
+                  <div class="field"><label for="f-instagram">Instagram</label><input type="url" id="f-instagram" data-k="instagram" placeholder="instagram.com/you"></div>
+                  <div class="field"><label for="f-facebook">Facebook</label><input type="url" id="f-facebook" data-k="facebook" placeholder="facebook.com/you"></div>
+                </div>
+                <div class="row2">
+                  <div class="field"><label for="f-youtube">YouTube</label><input type="url" id="f-youtube" data-k="youtube" placeholder="youtube.com/@you"></div>
+                  <div class="field"><label for="f-github">GitHub</label><input type="url" id="f-github" data-k="github" placeholder="github.com/you"></div>
+                </div>
+                <p class="hint">Leave any of them empty and its button disappears.</p>
+              </div>
+              <div class="group">
+                <span class="mono">Extras</span>
+                <div class="row2">
+                  <div class="field"><label for="f-ctaLabel">Button text</label><input type="text" id="f-ctaLabel" data-k="ctaLabel" placeholder="Book a call"></div>
+                  <div class="field"><label for="f-ctaUrl">Button link</label><input type="url" id="f-ctaUrl" data-k="ctaUrl" placeholder="calendly.com/you"></div>
+                </div>
+                <div class="field"><label for="f-disclaimer">Small print</label><textarea id="f-disclaimer" data-k="disclaimer" placeholder="Optional. A confidentiality note or a line about your office hours."></textarea></div>
+              </div>
+              <div class="next"><button type="button" class="btn small" data-go="2">Next: photo &amp; logo</button></div>
+            </div>
+
+            <div class="pane" role="tabpanel" id="pane-2" aria-labelledby="tab-2" hidden>
+              <div class="group">
+                <span class="mono">Photo</span>
+                <label class="drop" id="photo-drop">
+                  <input type="file" id="photo-file" accept="image/*" aria-label="Choose a photo">
+                  <span><b>Choose a photo</b> or drop it here</span>
+                  <span class="hint">JPG, PNG or WebP. A head-and-shoulders shot works best.</span>
+                </label>
+                <div class="cropper" id="cropper" hidden>
+                  <canvas id="crop" width="240" height="280" tabindex="0" aria-label="Photo crop. Drag or use arrow keys to move, plus and minus to zoom."></canvas>
+                  <div class="cropctl">
+                    <div class="field"><label for="zoom">Zoom</label><input type="range" id="zoom" min="1" max="3" step="0.01" value="1"></div>
+                    <div class="field"><span class="lbl" id="tone-lbl">Tone</span>
+                      <div class="seg" role="radiogroup" aria-labelledby="tone-lbl">
+                        <label><input type="radio" name="tone" id="tone-bw" data-k="tone" value="bw"><span>Black &amp; white</span></label>
+                        <label><input type="radio" name="tone" id="tone-color" data-k="tone" value="color"><span>Color</span></label>
+                      </div>
+                    </div>
+                    <p class="hint">Drag the photo to frame your face.</p>
+                    <div class="row"><button type="button" class="btn small" id="photo-remove">Remove photo</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="group">
+                <span class="mono">Company logo</span>
+                <div class="logo-row">
+                  <label class="drop" style="flex:1;min-width:200px;padding:14px">
+                    <input type="file" id="logo-file" accept="image/*" aria-label="Choose a logo">
+                    <span><b>Choose a logo</b> (optional)</span>
+                  </label>
+                  <div class="logo-prev" id="logo-prev" hidden><img id="logo-img" alt="Your logo"></div>
+                  <button type="button" class="btn small" id="logo-remove" hidden>Remove</button>
+                </div>
+                <p class="hint">Shows as a small mark next to your company name. In Minimal style with no photo, it takes the photo's place.</p>
+              </div>
+              <div class="privacy-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <span>Your photo and logo are read and edited by your browser, in this tab. They are not sent anywhere and are wiped when you close the tab or press Erase everything.</span>
+              </div>
+              <details class="more">
+                <summary>Already have your images online?</summary>
+                <div class="group">
+                  <p class="hint">Gmail only shows images that live at a public web address. If your photo or logo is already online (your website, for example), paste the links here and the copied signature will point to them.</p>
+                  <div class="field"><label for="f-photoUrl">Photo link</label><input type="url" id="f-photoUrl" data-k="photoUrl" placeholder="https://yoursite.com/photo.jpg"></div>
+                  <div class="field"><label for="f-logoUrl">Logo link</label><input type="url" id="f-logoUrl" data-k="logoUrl" placeholder="https://yoursite.com/logo.png"></div>
+                </div>
+              </details>
+              <div class="next"><button type="button" class="btn small" data-go="3">Next: style</button></div>
+            </div>
+
+            <div class="pane" role="tabpanel" id="pane-3" aria-labelledby="tab-3" hidden>
+              <div class="group">
+                <span class="mono">Layout</span>
+                <div class="tpls" id="tpls" role="radiogroup" aria-label="Layout"></div>
+              </div>
+              <div class="group">
+                <span class="mono">Background</span>
+                <div class="swatches" id="swatches" role="radiogroup" aria-label="Background"></div>
+                <div class="colors" id="custom-colors" hidden>
+                  <label><input type="color" id="f-customA" data-k="customA"> Left</label>
+                  <label><input type="color" id="f-customC" data-k="customC"> Right</label>
+                </div>
+              </div>
+              <div class="group">
+                <span class="mono">Accent</span>
+                <div class="dots" id="accents" role="radiogroup" aria-label="Accent color"></div>
+                <p class="hint">Colors the button and the contact letters.</p>
+              </div>
+              <div class="group">
+                <span class="mono">Type and icons</span>
+                <div class="inline">
+                  <div class="field" style="min-width:190px">
+                    <label for="f-font">Typeface</label>
+                    <select id="f-font" data-k="font">
+                      <option value="helvetica">Helvetica / Arial</option>
+                      <option value="georgia">Georgia</option>
+                      <option value="verdana">Verdana</option>
+                      <option value="trebuchet">Trebuchet</option>
+                    </select>
+                  </div>
+                  <div class="field"><span class="lbl" id="icons-lbl">Contact marks</span>
+                    <div class="seg" role="radiogroup" aria-labelledby="icons-lbl">
+                      <label><input type="radio" name="icons" id="icons-icons" data-k="icons" value="icons"><span>Icons</span></label>
+                      <label><input type="radio" name="icons" id="icons-letters" data-k="icons" value="letters"><span>Letters</span></label>
+                    </div>
+                  </div>
+                </div>
+                <p class="hint">These typefaces are installed on almost every computer, so your signature looks the same for the people you write to.</p>
+              </div>
+              <div class="next"><a class="btn small primary" href="#export">Done: get my signature</a></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="stage">
+          <div class="sticky">
+            <div class="bar" style="margin:0"><span class="mono">Live preview</span><span class="mono" id="tpl-name"></span></div>
+            <div class="env">
+              <div class="air" aria-hidden="true"></div>
+              <div class="hd">
+                <div><span>To</span>jordan@client.example</div>
+                <div><span>Subject</span>Following up on today</div>
+              </div>
+              <div class="bd">
+                <p>Hi Jordan,</p>
+                <p>Thanks for your time today. I've attached the proposal we talked about. Let me know what you think.</p>
+                <p style="margin-bottom:14px">Best,</p>
+                <div class="sigscroll"><div class="sigbox" id="sig"></div></div>
+              </div>
+            </div>
+            <p class="stage-note" id="stage-note"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="export" id="export">
+        <div>
+          <h3>Get your signature</h3>
+          <p class="hint">Pick the app you'll paste it into. The copy is tuned for it.</p>
+          <div class="seg" role="radiogroup" aria-label="Email app" style="margin-top:14px">
+            <label><input type="radio" name="app" id="app-gmail" data-k="app" value="gmail"><span>Gmail</span></label>
+            <label><input type="radio" name="app" id="app-outlook" data-k="app" value="outlook"><span>Outlook</span></label>
+            <label><input type="radio" name="app" id="app-apple" data-k="app" value="apple"><span>Apple Mail</span></label>
+            <label><input type="radio" name="app" id="app-other" data-k="app" value="other"><span>Other</span></label>
+          </div>
+          <div class="actions">
+            <div class="row">
+              <button type="button" class="btn primary" id="copy-rich">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+                Copy signature
+              </button>
+              <button type="button" class="btn" id="gmail-photo" hidden>Download photo for Gmail</button>
+            </div>
+            <div class="row">
+              <button type="button" class="btn small" id="copy-html">Copy HTML code</button>
+              <button type="button" class="btn small" id="copy-text">Copy plain text</button>
+              <button type="button" class="btn small" id="dl-png">Download as image</button>
+              <button type="button" class="btn small" id="dl-html">Download HTML file</button>
+            </div>
+          </div>
+          <div class="meter" id="meter">
+            <div class="track"><div class="fill" id="fill"></div></div>
+            <span class="mono" id="count"></span>
+          </div>
+          <div class="done" id="done" hidden><span id="done-msg">Saved.</span><button type="button" class="btn small" id="erase-done">Erase everything from this tab</button></div>
+          <details class="more" style="margin-top:16px">
+            <summary>View HTML code</summary>
+            <textarea class="code" id="code" readonly aria-label="Signature HTML code"></textarea>
+          </details>
+        </div>
+        <div class="howto" id="howto" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="styles" aria-labelledby="s-title">
+    <div class="wrap">
+      <div class="sechead">
+        <div class="eyebrow">Six styles</div>
+        <h2 id="s-title">Every style, with your details in it.</h2>
+        <p>These update as you type. Pick one and it becomes your signature.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="block" id="privacy" aria-labelledby="p-title">
+    <div class="wrap">
+      <div class="sechead">
+        <div class="eyebrow">Privacy</div>
+        <h2 id="p-title">Your photo stays on your device.</h2>
+        <p>Signoff has no server that could receive your details. Everything happens inside this browser tab.</p>
+      </div>
+      <div class="priv">
+        <div><span class="mono">Opened here</span><h3>Read by your browser</h3><p>When you choose a photo, your browser opens the file itself. Nothing is uploaded.</p></div>
+        <div><span class="mono">Edited here</span><h3>Cropped on a canvas</h3><p>Framing, black and white and resizing are drawn in this tab, then packed into your signature.</p></div>
+        <div><span class="mono">Gone after</span><h3>Nothing is kept</h3><p>No account, cookies or saved drafts. Close the tab or press Erase everything and it is all gone.</p></div>
+      </div>
+      <p class="priv-foot">This page talks to no other server. Its fonts and its image library ship with it, and a Content-Security-Policy makes the browser block any outside request. The one exception is a photo or logo link you paste yourself: the preview loads that image from where you host it.</p>
+    </div>
+  </section>
+
+  <section class="block" id="faq" aria-labelledby="q-title">
+    <div class="wrap">
+      <div class="sechead">
+        <div class="eyebrow">Questions</div>
+        <h2 id="q-title">Good to know</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Why does Gmail need an extra step for my photo?</summary><p>Gmail removes images that are packed inside a signature. So for Gmail, Signoff copies your signature with a "Photo" marker, you download the photo it made for you, and you add it with Gmail's own Insert image button. Gmail then stores it for you. If your photo already lives at a public link, paste that link in step 2 and you can skip all of this.</p></details>
+        <details><summary>Why do my icons turn into letters in Gmail?</summary><p>Icons are small images, and Gmail would need each one added by hand. Letters are plain text, so they come through in every inbox. Outlook and Apple Mail keep the icons.</p></details>
+        <details><summary>Will it look the same for everyone?</summary><p>Close to it. Most apps show the card as you see it here. Classic Outlook for Windows ignores rounded corners and gradients, so it shows square corners and a flat color. Your text, links and photo still come through.</p></details>
+        <details><summary>Can I come back and edit it later?</summary><p>Nothing is saved, on purpose. Download the HTML file before you leave: it opens in any browser, and you can copy your signature from it again.</p></details>
+        <details><summary>Does it work on my phone?</summary><p>You can build it on your phone. To use it in iPhone Mail, copy it there and paste it under Settings, Apps, Mail, Signature. The Gmail phone app only takes plain text, so use Copy plain text for it.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Signoff. Free email signatures, made in your browser.</span><span>No accounts. No uploads. No tracking.</span></div>
+</footer>
+
+<div id="shot" aria-hidden="true"></div>
+<div id="copy-host" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="src/signature.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

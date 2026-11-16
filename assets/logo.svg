@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <title>Signoff</title>
+  <rect x="0.5" y="0.5" width="39" height="39" rx="9" fill="#FFFFFF" stroke="#E3E5EA"/>
+  <g transform="translate(3 4)" fill="none">
+    <circle cx="12" cy="16" r="9.5" stroke="#1B1F27" stroke-width="2"/>
+    <circle cx="12" cy="16" r="5.5" stroke="#1B1F27" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <path d="M19 11.5c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0M19 16c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0M19 20.5c2.2-1.6 3.8 1.6 6 0s3.8 1.6 6 0" stroke="#C9402F" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "name": "signoff",
+  "version": "1.0.0",
+  "description": "Free, private email signature creator. Fill in the blanks, pick a style, paste into Gmail, Outlook or Apple Mail. Your photo never leaves the browser.",
+  "private": true,
+  "license": "MIT",
+  "author": "Rohit Swerashi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therohitji/signoff.git"
+  },
+  "keywords": ["email-signature", "email-signature-generator", "gmail", "outlook", "apple-mail", "html-email", "privacy"],
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
